@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="zh">
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+        <meta name="theme-color" content="#464646">
+        <meta name="theme_color" content="#464646">
+        <meta name="application-name" content="奇怪搜索">
+        <meta name="description" content="奇怪搜索">
+
+        <title>奇怪搜索</title>
+
+        <script src="js/pace.js" async></script>
+
+        
+        <link rel="manifest" href="webmanifest.json">
+        <link rel="apple-touch-icon" href="favicon.png">
+        <link rel="icon" type="image/png" href="favicon.png">
+
+        <link rel="stylesheet" href="css/bootstrap-reboot.css" media="none" onload="if(media!='all')media='all'">
+
+        <link rel="preload" href="css/main.css" as="style">
+
+        <link rel="preconnect" href="https://www.google-analytics.com">
+
+        <link rel="preconnect" href="https://feed.mikle.com">
+
+        <script src="js/vendor/jquery-3.4.1.min.js"></script>
+
+        <link rel="preload" href="js/main.js" as="script">
+
+        <script>
+            $(document).ready(function() {
+                var currentTime = new Date().getHours();
+                if (8 <= currentTime && currentTime < 20) {
+                    if (document.body) {
+                        $('#background').addClass('bgday');
+                        document.body.className = " day1";
+                    }
+
+                } else {
+                    if (document.body) {
+                        $('#background').addClass('bgnight');
+                        document.body.className = " night";
+                        $('#datemobile').addClass('datemobilenight');
+                    }
+                }
+            });
+        </script>
+
+        <script>
+            $(document).ready(function () {
+
+                console.log('Retrieving updated time');
+
+                //Default time format - 24H:
+
+                myVar24 = setInterval(setTime24, 500);
+
+                //Default time format - 12H:
+
+                //myVar12 = setInterval(setTime12, 500);
+
+            });
+        </script>
+
+        <script>
+            function inputFocus() {
+                document.getElementById("flexbox-input").focus();
+                $('#inputlabel').addClass('t-md-hidden t-top-hidden');
+                $('#suggestions-container').addClass('hidden');
+            }
+        </script>
+        
+        <link rel="stylesheet" href="css/main.css">
+
+            <!-- Google Analytics: change UA-XXXXX-Y to your site's ID -->
+        <script src="js/analytics.js" async></script>
+
+    </head>
+
+    <body style="background-color: #000000">
+
+        <script>
+            document.body.className += ' fade-out';
+            $(function () {
+                $('body').removeClass('fade-out');
+            });
+        </script>
+
+        <div id="background">
+            <!-- Add background images in main.css -->
+        </div>
+
+        <div id="info">
+            
+            <div class="timeArea">
+                <p>
+                    <span id="time" class="time t-bottom2 t-sm" data-tooltip="Convert time" data-switch="b">
+                        <span id="hours"></span><span id="colon">:</span><span id="minutes"></span><span id="ampm"></span>
+                    </span>
+                    <span id="date" class="date t-top t-md" data-tooltip="Show Calendar"></span>
+                    <span id="datemobile" class="date datemobile"></span>
+                </p>
+            </div>
+
+            <div id="weather">
+
+                <div id="weatherloading" title="Weather data is loading">
+                    <div class="weatherspinner"></div>
+                    <div id="loadingtext">Loading weather ...</div>
+                </div>
+
+                <div id="tempwrapper" class="tempwrapper t-bottom t-sm" data-tooltip="Convert temp">
+                    <div id="temp"></div>
+                    <div id="unit" class="unit hidden">&degF</div>
+                </div>
+                    
+                <div id="iconwrapper" class="hidden t-bottom t-sm" data-tooltip="#">
+                    <a href="#" id="weatherlink" rel="noopener noreferrer" target="_blank" aria-label="Forecast"> <h1 class="hidden">Weather</h1>
+
+                        <div class="icon unknown">
+                            <div class="text"></div>
+                        </div>
+
+                        <div class="icon sunny">
+                            <div class="sun">
+                                <div class="rays"></div>
+                            </div>
+                        </div>
+
+                        <div class="icon clear-night">
+                            <div class="moon"></div>
+                            <div class="stars"></div>
+                        </div>
+
+                        <div class="icon sunny-cloudy">
+                            <div class="cloud"></div>
+                            <div class="sun">
+                                <div class="rays"></div>
+                            </div>
+                        </div>
+
+                        <div class="icon moon-cloudy">
+                            <div class="cloud"></div>
+                            <div class="moon"></div>
+                        </div>
+
+                        <div class="icon overcast">
+                            <div class="cloud"></div>
+                        </div>
+
+                        <div class="icon moon-overcast">
+                            <div class="moon">
+                                <div class="cloud"></div>
+                            </div>
+                        </div>
+
+                        <div class="icon drizzle">
+                            <div class="cloud"></div>
+                            <div class="sun">
+                                <div class="rays"></div>
+                            </div>
+                            <div class="rain"></div>
+                        </div>
+
+                        <div class="icon moon-drizzle">
+                            <div class="cloud"></div>
+                            <div class="moon"></div>
+                            <div class="rain"></div>
+                        </div>
+
+                        <div class="icon rainy">
+                            <div class="cloud"></div>
+                            <div class="rain"></div>
+                        </div>
+
+                        <div class="icon moon-rainy">
+                            <div class="moon">
+                                <div class="cloud"></div>
+                            </div>
+                            <div class="rain"></div>
+                        </div>
+
+                        <div class="icon thunderstorm">
+                            <div class="cloud"></div>
+                            <div class="lightning">
+                                <div class="bolt"></div>
+                                <div class="bolt"></div>
+                            </div>
+                        </div>
+
+                        <div class="icon moon-thunderstorm">
+                            <div class="cloud"></div>
+                            <div class="moon"></div>
+
+                            <div class="lightning">
+                                <div class="bolt"></div>
+                                <div class="bolt"></div>
+                            </div>
+                        </div>
+
+                        <div class="icon sun-snow">
+                            <div class="cloud"></div>
+                            <div class="snow">
+                                <div class="flake"></div>
+                                <div class="flake"></div>
+                            </div>
+                        </div>
+
+                        <div class="icon moon-snow">
+                            <div class="moon">
+                                <div class="cloud"></div>
+                            </div>
+                            <div class="snow">
+                                <div class="flake"></div>
+                                <div class="flake"></div>
+                            </div>
+                        </div>
+
+                        <div class="icon foggy">
+                            <div class="cloud"></div>
+                            <div class="fog"></div>
+                        </div>
+
+                        <div class="icon foggy-night">
+                            <div class="cloud"></div>
+                            <div class="moon"></div>
+                            <div class="fog"></div>
+                        </div>
+
+                        <div class="icon windy">
+                            <div class="cloud"></div>
+                            <div class="cloud"></div>
+                        </div>
+
+                    </a>
+                </div>
+
+                <div id="weathererror" class="hidden" title="Weather update error">
+                    <img src="css/exclamation.gif" id="erroricon" alt="Error">
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="flexbox" id="flexbox">
+
+            <form id="formstretch" action="/proplus.php" method="post">
+                
+                <label id="inputlabel" for="flexbox-input" class="t-top t-md t-md-hidden t-top-hidden" data-tooltip1="Enter a search query">
+                    <input type="search" id="flexbox-input" name="s" value="" placeholder=" Search..." autocomplete="off" spellcheck="false" autofocus>
+                </label>
+
+                <div id="searchbutton" onclick="inputFocus()">
+                    <img src="css/checkmark-green.gif" id="searchsubmit" class="hidden" alt="Search" title="Execute Search">
+                    <img src="css/cancel-red.gif" id="searchclear" class="hidden" alt="Clear" title="Clear Search">
+                </div>
+
+                <label id="optionlabel" for="flexbox-option" class="t-top t-sm" data-tooltip="Select">
+
+                    <select id="flexbox-option" onchange="inputFocus()">
+                        <option value="google" id="googleselect">搜索</option>
+                        <option value="youtube" id="youtubeselect" style="color: red">YouTube</option>
+                        <option value="wiki" id="wikiselect" style="color: black">Wiki</option>
+                        <option value="imdb"  id="imdbselect" style="color: orange">IMDB</option>
+                    </select>
+
+                </label>
+
+                <div id="suggestions-container" class="hidden">
+                    <ul class="search-suggestions" id="search-suggestions"></ul>
+                </div>-->
+
+            </form>
+
+            <!-- BUILD YOUR OWN TICKER FROM www.feed.mikle.com and insert your custom link below after "SRC=" -->
+
+            <!--<div id="fw-container">
+                <script src="https://feed.mikle.com/js/fw-loader.js" data-fw-param="48421/"></script>
+            </div>-->
+
+            <!-- INSERT YOUR OWN TICKER FEED AND INSERT LINK ABOVE AFTER "SRC=" -->
+
+        </div>
+
+            <!-- PHP "Hit Counter": -->
+
+        <div id="counter" class="hidden">
+             <p><script src="php/hits.php"></script></p> 
+        </div> 
+
+            <!-- Live search help function: -->
+
+        <aside class="overlay hidden" id="help">
+            <img src="css/cancel-red.gif" id="helpclear" alt="Clear" title="Close Help">
+        </aside>
+
+        <div id="calendarwrapper" ng-app="myApp" ng-controller="AppCtrl" class="hidden">
+            <div calendar class="calendar" id="calendar">
+                <img src="css/cancel-red.gif" id="calendarclear" alt="Clear" title="Close Calendar">
+            </div>
+        </div>
+
+        <div id="footer">
+            <p> 奇怪搜索</a>
+            </p>
+        </div>
+
+        <script src="js/main.js"></script>
+
+        <script src="js/weather.js" async></script>
+        
+        <script src="js/tilde.js" async></script>
+
+        <script src="js/vendor/angular.min.js"></script>
+        
+        <script src="js/vendor/moment.min.js"></script>
+        
+        <script src="js/calendar.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                if ($(window).width() < 480) {
+                    $('#help').addClass('hiddenscreen');
+                }
+            });
+        </script>
+                
+        <script>
+            $(document).ready(function () {
+                if ($(window).height() < 900) {
+                    if ($(window).height() > 731) {
+                        $('#date').click(function () {
+                            $('#flexbox').addClass('flexboxresize');
+                            $('#calendarwrapper').removeClass('hidden');
+                        });
+                    };
+                };
+            });
+        </script>
+
+    </body>
+
+</html>
